@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MemoTrack — Memo Completions, PROVEN.</title>
+  <meta name="description"
+    content="Hospital maintenance ticketing — raised in seconds, verified at the spot, visible to everyone." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg: #F8F8F6;
+      --text-primary: #1A1A1A;
+      --text-secondary: #595959;
+      --accent: #0891B2;
+      --accent-light: #E0F2F7;
+      --border: #E2E2E0;
+      --border-thick: #C8C5BE;
+      --font-display: 'DM Serif Display', serif;
+      --font-ui: 'Plus Jakarta Sans', sans-serif;
+      --max-width: 1080px;
+      --radius-card: 32px;
+    }
+
+    /* ─── RESET ─── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+    }
+
+    #site-header.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── BUTTON ─── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 200ms ease, transform 150ms ease;
+      line-height: 1;
+    }
+
+    .btn-primary:hover {
+      background: #0779A0;
+      transform: translateY(-1px);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 40px 0;
+    }
+
+    /* ─── MOTION ─── */
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .reveal.in-view {
+      animation: rise 700ms cubic-bezier(.16, .8, .3, 1) forwards;
+    }
+
+    .reveal-group>* {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .reveal-group.in-view>* {
+      animation: rise 700ms cubic-bezier(.16, .8, .3, 1) forwards;
+    }
+
+    .reveal-group.in-view>*:nth-child(1) {
+      animation-delay: 0ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(2) {
+      animation-delay: 70ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(3) {
+      animation-delay: 140ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(4) {
+      animation-delay: 210ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(5) {
+      animation-delay: 280ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(6) {
+      animation-delay: 350ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(7) {
+      animation-delay: 420ms;
+    }
+
+    .reveal-group.in-view>*:nth-child(8) {
+      animation-delay: 490ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .reveal,
+      .reveal-group>* {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    #hero {
+      padding-top: 96px;
+      padding-bottom: 96px;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: 62px;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      max-width: 780px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-subline {
+      font-family: var(--font-ui);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    /* ════════════════════════════════
+       BENTO GRID
+    ════════════════════════════════ */
+    #bento-showcase {
+      padding: 0 0 80px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    /* ─── Card shell ─── */
+    .bento-card {
+      background: #fff;
+      border: 7px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow 300ms ease, transform 300ms ease, border-color 300ms ease;
+      position: relative;
+    }
+
+    .bento-card:hover {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.07);
+      transform: translateY(-3px);
+      border-color: var(--border-thick);
+    }
+
+    .bento-large {
+      min-height: 500px;
+    }
+
+    .bento-medium {
+      min-height: 340px;
+    }
+
+    /* ─── Card typography ─── */
+    .bento-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .bento-desc {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .bento-text {
+      margin-bottom: 36px;
+    }
+
+    .bento-visual {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* ════════════════════════════════
+       CARD 1 — THE SHIFT (comparison table)
+    ════════════════════════════════ */
+    .shift-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .shift-table thead th {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 12px;
+      padding: 0 14px 14px;
+      text-align: left;
+      letter-spacing: 0.02em;
+    }
+
+    .shift-table thead th.col-before {
+      color: var(--text-secondary);
+    }
+
+    .shift-table thead th.col-after {
+      color: var(--accent);
+    }
+
+    .shift-table tbody tr {
+      border-top: 1px solid var(--border);
+      transition: background 200ms ease;
+    }
+
+    .shift-table tbody tr:hover {
+      background: #f6f6f4;
+    }
+
+    .shift-table td {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--text-primary);
+      padding: 11px 14px;
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    .shift-table td.col-before {
+      color: var(--text-secondary);
+    }
+
+    .shift-divider-col {
+      width: 1px;
+      background: var(--border);
+      padding: 0 !important;
+    }
+
+    /* ════════════════════════════════
+       CARD 2 — HOW IT WORKS (steps)
+    ════════════════════════════════ */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      transition: background 200ms ease;
+    }
+
+    .step-item:hover {
+      background: #f6f6f4;
+      padding-left: 8px;
+      border-radius: 8px;
+    }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--accent);
+      line-height: 1.2;
+      min-width: 28px;
+      padding-top: 1px;
+    }
+
+    .step-name {
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .step-desc {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ════════════════════════════════
+       CARD 3 — INSTANT MEMO (speed counter)
+    ════════════════════════════════ */
+    .speed-stat {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 1;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .speed-unit {
+      font-family: var(--font-ui);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .speed-support {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Pulse dot animation */
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+      }
+
+      50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+      }
+    }
+
+    .live-label {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    /* Counting animation via JS */
+    .speed-stat span {
+      transition: none;
+    }
+
+    /* ════════════════════════════════
+       CARD 4 — LIVE NOTIFICATIONS
+    ════════════════════════════════ */
+    .notif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .notif-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .notif-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .notif-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .notif-title {
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .notif-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+    }
+
+    .notif-time {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* ════════════════════════════════
+       CARD 5 — TOTP ATTENDANCE
+    ════════════════════════════════ */
+    .totp-display {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .totp-label-top {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .totp-code {
+      font-family: var(--font-display);
+      font-size: 48px;
+      letter-spacing: 0.18em;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .totp-code.revealed {
+      color: var(--accent);
+    }
+
+    .totp-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #166534;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .totp-verified-badge.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .totp-meta {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       CARD 6 — VOICE UPDATES
+    ════════════════════════════════ */
+    .voice-lang-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .voice-tag {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      color: var(--text-secondary);
+      transition: border-color 300ms ease, color 300ms ease, background 300ms ease;
+    }
+
+    .voice-tag.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .voice-waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 40px;
+      margin-top: 8px;
+    }
+
+    .voice-bar {
+      width: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: none;
+      height: 8px;
+      transition: height 200ms ease;
+      opacity: 0.3;
+    }
+
+    .bento-card:hover .voice-bar {
+      opacity: 1;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(1) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(2) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.1s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(3) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.2s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(4) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.05s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(5) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.15s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(6) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.25s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(7) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.08s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(8) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.18s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(9) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.28s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(10) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.03s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(11) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.13s;
+    }
+
+    .bento-card:hover .voice-bar:nth-child(12) {
+      animation: wave 0.9s ease-in-out infinite;
+      animation-delay: 0.23s;
+    }
+
+    @keyframes wave {
+
+      0%,
+      100% {
+        height: 8px;
+      }
+
+      50% {
+        height: 36px;
+      }
+    }
+
+    .voice-transcript {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 20px;
+      font-style: italic;
+      min-height: 48px;
+    }
+
+    .voice-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 14px;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ════════════════════════════════
+       CARD 7 — TOTP COMPLETION (THE DIFFERENTIATOR)
+    ════════════════════════════════ */
+    .proof-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .proof-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: #fff;
+      transition: border-color 400ms ease, background 400ms ease;
+    }
+
+    .proof-step.proven {
+      border-color: #bbf7d0;
+      background: #f0fdf4;
+    }
+
+    .proof-step-icon {
+      font-size: 20px;
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .proof-step-label {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .proof-step-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .proof-check {
+      margin-left: auto;
+      font-size: 16px;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 300ms ease, transform 300ms ease;
+    }
+
+    .proof-step.proven .proof-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ════════════════════════════════
+       CARD 8 — LIVE DASHBOARD
+    ════════════════════════════════ */
+    .dash-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .dash-stat {
+      text-align: center;
+      padding: 16px 12px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 300ms ease, background 300ms ease;
+    }
+
+    .bento-card:hover .dash-stat {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .dash-stat-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .dash-stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .dash-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-ui);
+      font-size: 12px;
+    }
+
+    .dash-row-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dash-row-dot.open {
+      background: #f59e0b;
+    }
+
+    .dash-row-dot.in-progress {
+      background: #3b82f6;
+    }
+
+    .dash-row-dot.done {
+      background: #22c55e;
+    }
+
+    .dash-row-memo {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .dash-row-ward {
+      color: var(--text-secondary);
+      margin-left: auto;
+    }
+
+    /* ════════════════════════════════
+       TRUST STRIP
+    ════════════════════════════════ */
+
+    .trust-item {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-item strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+
+    /* ════════════════════════════════
+       FINAL CTA / DEMO FORM
+    ════════════════════════════════ */
+    #demo {
+      padding: 80px 0 120px;
+      text-align: center;
+    }
+
+    .form-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-headline {
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .form-sub {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .field-group {
+      margin-bottom: 14px;
+    }
+
+    .field-group label {
+      display: block;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .field-group input {
+      width: 100%;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: var(--font-ui);
+      font-size: 15px;
+      color: var(--text-primary);
+      background: #fff;
+      outline: none;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .field-group input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px #0891B215;
+    }
+
+    .field-group input::placeholder {
+      color: #ACACAC;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 200ms ease, transform 150ms ease;
+    }
+
+    .btn-submit:hover {
+      background: #0779A0;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .form-confirm {
+      display: none;
+      font-family: var(--font-ui);
+      font-size: 16px;
+      color: var(--text-primary);
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .form-error {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: #C0392B;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero-headline {
+        font-size: 48px;
+      }
+
+      .bento-card {
+        padding: 32px;
+      }
+
+      .bento-title {
+        font-size: 26px;
+      }
+
+      .dash-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #hero {
+        padding-top: 120px;
+        padding-bottom: 56px;
+      }
+
+      .hero-headline {
+        font-size: 36px;
+      }
+
+      .hero-proof {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .hero-proof-dot {
+        display: none;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .bento-card {
+        padding: 28px 22px;
+        min-height: auto;
+      }
+
+      .bento-title {
+        font-size: 24px;
+      }
+
+      .speed-stat {
+        font-size: 56px;
+      }
+
+      .form-headline {
+        font-size: 32px;
+      }
+
+      .trust-strip {
+        gap: 16px;
+      }
+
+      .trust-divider {
+        display: none;
+      }
+
+      .dash-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STICKY HEADER -->
+  <header id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#hero" class="logo">
+        <img src="logo.png" alt="MemoTrack Logo" style="height: 56px; width: auto; object-fit: contain;" />
+      </a>
+      <a href="#demo" class="btn-primary">Book a Demo</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="reveal-group" id="hero-group">
+          <h1 class="hero-headline" id="hero-headline">
+            In most hospitals, 'fixed' is just someone's word.<br>MemoTrack proves it.
+          </h1>
+          <p class="hero-subline">
+            Hospital maintenance ticketing — raised in seconds, OTP-verified at the spot, visible to everyone.
+          </p>
+          <a href="#demo" class="btn-primary">Book a Demo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BENTO GRID ═══ -->
+    <section id="bento-showcase">
+      <div class="container">
+        <div class="bento-grid reveal-group">
+
+          <!-- CARD 1: The Shift (comparison) — Large -->
+          <div class="bento-card bento-large">
+            <div class="bento-text" style="margin-bottom: 24px;">
+              <h2 class="bento-title">How things work today — and how we change that.</h2>
+              <p class="bento-desc">Paper chits, missed calls, and hoping someone shows up. MemoTrack makes every step
+                visible.</p>
+            </div>
+            <div class="bento-visual" style="justify-content: flex-start;">
+              <table class="shift-table" role="table" aria-label="Before and after comparison">
+                <thead>
+                  <tr>
+                    <th class="col-before" scope="col">Before MemoTrack</th>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <th class="col-after" scope="col">With MemoTrack</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="col-before">Paper chit passed by hand</td>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <td>Ticket logged from the ward in seconds</td>
+                  </tr>
+                  <tr>
+                    <td class="col-before">Days before a worker even hears about it</td>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <td>Push alert reaches the worker immediately</td>
+                  </tr>
+                  <tr>
+                    <td class="col-before">Nobody knows if anyone showed up</td>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <td>Arrival confirmed with a one-time code</td>
+                  </tr>
+                  <tr>
+                    <td class="col-before">"He said he fixed it"</td>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <td>Completion confirmed by a second code</td>
+                  </tr>
+                  <tr>
+                    <td class="col-before">Supervisor rings around to find out</td>
+                    <td class="shift-divider-col" role="presentation"></td>
+                    <td>Live dashboard — everything in one place</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CARD 2: How it works (steps) — Large -->
+          <div class="bento-card bento-large">
+            <div class="bento-text">
+              <h2 class="bento-title">One flow, start to finish.</h2>
+              <p class="bento-desc">Five steps, each logged and time-stamped.</p>
+            </div>
+            <div class="bento-visual">
+              <div class="steps-list" role="list">
+                <div class="step-item" role="listitem">
+                  <div class="step-num">01</div>
+                  <div class="step-body">
+                    <div class="step-name">Log the complaint</div>
+                    <div class="step-desc">Ward staff fills in block, floor, ward, and the type of issue. Done in under
+                      a minute.</div>
+                  </div>
+                </div>
+                <div class="step-item" role="listitem">
+                  <div class="step-num">02</div>
+                  <div class="step-body">
+                    <div class="step-name">Worker gets notified</div>
+                    <div class="step-desc">A push alert goes out to available workers who can handle that trade.</div>
+                  </div>
+                </div>
+                <div class="step-item" role="listitem">
+                  <div class="step-num">03</div>
+                  <div class="step-body">
+                    <div class="step-name">Show up, scan in</div>
+                    <div class="step-desc">Ward staff share a one-time code when the worker arrives. No code, no
+                      check-in.</div>
+                  </div>
+                </div>
+                <div class="step-item" role="listitem">
+                  <div class="step-num">04</div>
+                  <div class="step-body">
+                    <div class="step-name">Voice update</div>
+                    <div class="step-desc">Worker speaks a status note in Tamil or English — no typing required.</div>
+                  </div>
+                </div>
+                <div class="step-item" role="listitem">
+                  <div class="step-num">05</div>
+                  <div class="step-body">
+                    <div class="step-name">Close it with proof</div>
+                    <div class="step-desc">Ward staff enter a second code to confirm the fix. That closes the ticket —
+                      for good.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Instant Memo — Medium -->
+          <div class="bento-card bento-medium" id="card-speed">
+            <div class="bento-text">
+              <h2 class="bento-title">The right worker hears about it fast.</h2>
+              <p class="bento-desc">From complaint logged to worker notified — in seconds.</p>
+            </div>
+            <div class="bento-visual">
+              <div class="live-label">
+                <span class="live-dot"></span> Live notifications enabled
+              </div>
+              <div class="speed-stat"><span id="speed-counter">3</span><span class="speed-unit">s</span></div>
+              <p class="speed-support">Average time from complaint logged to first worker notified. No paper trail, no
+                walking across floors, no middle-man.</p>
+            </div>
+          </div>
+
+          <!-- CARD 4: Live Notifications — Medium -->
+          <div class="bento-card bento-medium" id="card-notif">
+            <div class="bento-text">
+              <h2 class="bento-title">Workers hear about it the moment it's logged.</h2>
+            </div>
+            <div class="bento-visual">
+              <div class="notif-list" id="notif-list" aria-live="polite">
+                <div class="notif-item" id="notif-1">
+                  <div class="notif-icon">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#eab308;"></div>
+                  </div>
+                  <div class="notif-body">
+                    <div class="notif-title">New Memo · Electrical</div>
+                    <div class="notif-sub">Ward 4 · Floor 2 · Faulty switchboard</div>
+                  </div>
+                  <div class="notif-time">just now</div>
+                </div>
+                <div class="notif-item" id="notif-2">
+                  <div class="notif-icon">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#eab308;"></div>
+                  </div>
+                  <div class="notif-body">
+                    <div class="notif-title">New Memo · Plumbing</div>
+                    <div class="notif-sub">OPD Block · Floor 1 · Leaking tap</div>
+                  </div>
+                  <div class="notif-time">12s ago</div>
+                </div>
+                <div class="notif-item" id="notif-3">
+                  <div class="notif-icon">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;"></div>
+                  </div>
+                  <div class="notif-body">
+                    <div class="notif-title">Memo #251 · Completed</div>
+                    <div class="notif-sub">TOTP verified by Sr. Nurse Kavitha</div>
+                  </div>
+                  <div class="notif-time">1m ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5: TOTP Attendance — Medium -->
+          <div class="bento-card bento-medium" id="card-attend">
+            <div class="bento-text">
+              <h2 class="bento-title">You can't check in without showing up.</h2>
+              <p class="bento-desc">Ward staff generate a one-time code at the bedside. The worker has to be there in
+                person to get it.</p>
+            </div>
+            <div class="bento-visual">
+              <div class="totp-display">
+                <div class="totp-label-top">Attending TOTP · Memo #247</div>
+                <div class="totp-code" id="totp-attend">—— ——</div>
+                <div class="totp-verified-badge" id="attend-badge">✓ Attendance confirmed</div>
+              </div>
+              <p class="totp-meta">The code is generated on-site. It expires quickly and can only be shared in person.
+              </p>
+            </div>
+          </div>
+
+          <!-- CARD 6: Voice Updates — Medium -->
+          <div class="bento-card bento-medium" id="card-voice">
+            <div class="bento-text">
+              <h2 class="bento-title">Update the ticket by speaking.</h2>
+              <p class="bento-desc">Workers dictate in Tamil, Hindi, Telugu, or English. No forms, no typing, no delays.
+              </p>
+            </div>
+            <div class="bento-visual">
+
+              <div class="voice-lang-tags">
+                <div class="voice-tag active" id="tag-tamil">தமிழ்</div>
+                <div class="voice-tag" id="tag-english">English</div>
+              </div>
+              <div class="voice-waveform" aria-hidden="true">
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+                <div class="voice-bar"></div>
+              </div>
+              <div class="voice-transcript" id="voice-transcript">
+                <em>"வேலை முடிந்தது, மின்சாரம் சரியானது"</em>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 7: TOTP Completion (THE DIFFERENTIATOR) — Medium -->
+          <div class="bento-card bento-medium" id="card-complete">
+            <div class="bento-text">
+              <h2 class="bento-title">Memo Completions, PROVEN.</h2>
+              <p class="bento-desc">The same person who raised the issue confirms the fix. No self-reporting.</p>
+            </div>
+            <div class="bento-visual">
+              <div class="proof-chain" id="proof-chain">
+                <div class="proof-step" id="proof-1">
+                  <div class="proof-step-icon" style="font-family: var(--font-display); color: var(--accent);">01</div>
+                  <div class="proof-step-text">
+                    <div class="proof-step-label">Worker arrives on-site</div>
+                    <div class="proof-step-sub">Ward staff share the first one-time code</div>
+                  </div>
+                  <div class="proof-check">✓</div>
+                </div>
+                <div class="proof-step" id="proof-2">
+                  <div class="proof-step-icon" style="font-family: var(--font-display); color: var(--accent);">02</div>
+                  <div class="proof-step-text">
+                    <div class="proof-step-label">Job finished</div>
+                    <div class="proof-step-sub">Worker speaks an update into the app</div>
+                  </div>
+                  <div class="proof-check">✓</div>
+                </div>
+                <div class="proof-step" id="proof-3">
+                  <div class="proof-step-icon" style="font-family: var(--font-display); color: var(--accent);">03</div>
+                  <div class="proof-step-text">
+                    <div class="proof-step-label">Closed by the same person who opened it</div>
+                    <div class="proof-step-sub">Ward staff enter the second one-time code to confirm</div>
+                  </div>
+                  <div class="proof-check">✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 8: Live Dashboard — Medium -->
+          <div class="bento-card bento-medium">
+            <div class="bento-text">
+              <h2 class="bento-title">Everything in one place, no calls needed.</h2>
+              <p class="bento-desc">Supervisors can check the status of any ticket at a glance — open, in progress, or
+                closed with proof.</p>
+            </div>
+            <div class="bento-visual">
+              <div class="dash-stats">
+                <div class="dash-stat">
+                  <div class="dash-stat-num">12</div>
+                  <div class="dash-stat-label">Open</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-num">5</div>
+                  <div class="dash-stat-label">In Progress</div>
+                </div>
+                <div class="dash-stat">
+                  <div class="dash-stat-num">38</div>
+                  <div class="dash-stat-label">Verified</div>
+                </div>
+              </div>
+              <div class="dash-row">
+                <div class="dash-row-dot in-progress"></div>
+                <div class="dash-row-memo">Electrical · Faulty switchboard</div>
+                <div class="dash-row-ward">Ward 4, Floor 2</div>
+              </div>
+              <div class="dash-row">
+                <div class="dash-row-dot open"></div>
+                <div class="dash-row-memo">Plumbing · Leaking tap</div>
+                <div class="dash-row-ward">OPD Block</div>
+              </div>
+              <div class="dash-row">
+                <div class="dash-row-dot done"></div>
+                <div class="dash-row-memo">Civil · Broken window</div>
+                <div class="dash-row-ward">ICU, Floor 3 ✓</div>
+              </div>
+            </div>
+          </div>
+
+    </section>
+    <section id="support" style="padding: 0 0 60px;">
+      <div class="container">
+        <div class="bento-card reveal"
+          style="text-align: center; padding: 56px 48px; max-width: 720px; margin: 0 auto;">
+          <h2 class="bento-title" style="margin-bottom: 12px;">On‑premises training & 24/7 support</h2>
+          <p class="bento-desc" style="max-width: 520px; margin: 0 auto;">One‑time setup, lifelong maintenance, and
+            dedicated on‑site training for your staff. Our team is on call round the clock to keep your hospital running
+            smoothly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FINAL CTA ═══ -->
+    <section id="demo" aria-labelledby="form-heading">
+      <div class="container">
+        <div class="form-wrap">
+          <h2 class="form-headline reveal" id="form-heading">Want to see how it works?</h2>
+          <p class="form-sub reveal">Book a short demo and we'll show you the whole flow — from logging a complaint to
+            closing it with proof.</p>
+
+          <form id="demo-form" action="http://127.0.0.1:8000/api/demo-request/" method="POST" novalidate>
+            <div class="reveal-group">
+              <div class="field-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Dr. Priya Sharma" autocomplete="name" required />
+              </div>
+              <div class="field-group">
+                <label for="institution">Hospital / Institution</label>
+                <input type="text" id="institution" name="institution" placeholder="Government Medical College, Chennai"
+                  required />
+              </div>
+              <div class="field-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@hospital.in" autocomplete="email"
+                  required />
+              </div>
+              <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
+              <button type="submit" class="btn-submit">Book a Demo →</button>
+              <p class="form-note">We'll get back to you within 2 working days.</p>
+            </div>
+          </form>
+
+          <div class="form-confirm" id="form-confirm" role="status" aria-live="polite">
+            Got it — we'll be in touch within 2 working days.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px;">
+        <div class="trust-item"><span>Live in a <strong>government medical college hospital</strong>, India</span></div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><strong>DPIIT-recognised startup</strong></div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">Serves <strong>Specialty · Government · Medical College · Clinics</strong></div>
+      </div>
+      <p class="footer-text">MemoTrack&trade; · Built for Indian hospitals</p>
+    </div>
+  </footer>
+
+  <script>
+    // ─── STICKY HEADER ───
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('visible', window.scrollY > 100);
+    }, { passive: true });
+
+    // ─── SCROLL REVEAL ───
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById('hero-group')?.classList.add('in-view');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    if (!prefersReducedMotion) {
+      document.querySelectorAll('.reveal, .reveal-group:not(#hero-group)').forEach(el => revealObserver.observe(el));
+    } else {
+      document.querySelectorAll('.reveal, .reveal-group').forEach(el => el.classList.add('in-view'));
+    }
+
+    // ─── CARD 4: NOTIFICATION SLIDE-IN ───
+    const cardNotif = document.getElementById('card-notif');
+    if (cardNotif && !prefersReducedMotion) {
+      const notifItems = cardNotif.querySelectorAll('.notif-item');
+      const notifObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          notifItems.forEach((item, i) => {
+            setTimeout(() => item.classList.add('visible'), i * 350);
+          });
+          notifObserver.unobserve(cardNotif);
+        }
+      }, { threshold: 0.3 });
+      notifObserver.observe(cardNotif);
+    } else {
+      document.querySelectorAll('.notif-item').forEach(el => el.classList.add('visible'));
+    }
+
+    // ─── CARD 5: TOTP ATTEND ANIMATION ───
+    const cardAttend = document.getElementById('card-attend');
+    if (cardAttend && !prefersReducedMotion) {
+      let attendDone = false;
+      const attendObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !attendDone) {
+          attendDone = true;
+          const codeEl = document.getElementById('totp-attend');
+          const badgeEl = document.getElementById('attend-badge');
+          setTimeout(() => {
+            codeEl.textContent = '482  917';
+            codeEl.classList.add('revealed');
+            setTimeout(() => badgeEl.classList.add('show'), 400);
+          }, 800);
+          attendObserver.unobserve(cardAttend);
+        }
+      }, { threshold: 0.4 });
+      attendObserver.observe(cardAttend);
+    } else {
+      const c = document.getElementById('totp-attend');
+      if (c) { c.textContent = '482  917'; c.classList.add('revealed'); }
+      document.getElementById('attend-badge')?.classList.add('show');
+    }
+
+    // ─── CARD 6: VOICE TYPEWRITER ───
+    const cardVoice = document.getElementById('card-voice');
+    if (cardVoice && !prefersReducedMotion) {
+      const phrases = [
+        { lang: 'tamil', text: '"வேலை முடிந்தது, மின்சாரம் சரியானது"' },
+        { lang: 'english', text: '"Electrical work completed, switchboard fixed"' },
+        { lang: 'tamil', text: '"குழாய் கசிவு சரிசெய்யப்பட்டது"' },
+        { lang: 'english', text: '"Plumbing issue resolved, no more leaks"' },
+      ];
+      let phraseIdx = 0;
+      const transcriptEl = document.getElementById('voice-transcript');
+      const tagTamil = document.getElementById('tag-tamil');
+      const tagEnglish = document.getElementById('tag-english');
+
+      function typePhrase(str, cb) {
+        transcriptEl.innerHTML = '';
+        const cursor = document.createElement('span');
+        cursor.className = 'voice-cursor';
+        let i = 0;
+        const interval = setInterval(() => {
+          transcriptEl.textContent = str.slice(0, i);
+          transcriptEl.appendChild(cursor);
+          i++;
+          if (i > str.length) { clearInterval(interval); setTimeout(cb, 1600); }
+        }, 38);
+      }
+
+      function cyclePhrase() {
+        const p = phrases[phraseIdx % phrases.length];
+        tagTamil.classList.toggle('active', p.lang === 'tamil');
+        tagEnglish.classList.toggle('active', p.lang === 'english');
+        typePhrase(p.text, () => { phraseIdx++; cyclePhrase(); });
+      }
+
+      const voiceObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) { cyclePhrase(); voiceObserver.unobserve(cardVoice); }
+      }, { threshold: 0.3 });
+      voiceObserver.observe(cardVoice);
+    }
+
+    // ─── CARD 7: PROOF CHAIN ANIMATION ───
+    const cardComplete = document.getElementById('card-complete');
+    if (cardComplete && !prefersReducedMotion) {
+      let proofDone = false;
+      const proofObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && !proofDone) {
+          proofDone = true;
+          const steps = ['proof-1', 'proof-2', 'proof-3'];
+          steps.forEach((id, i) => {
+            setTimeout(() => document.getElementById(id)?.classList.add('proven'), 600 + i * 700);
+          });
+          proofObserver.unobserve(cardComplete);
+        }
+      }, { threshold: 0.35 });
+      proofObserver.observe(cardComplete);
+    } else {
+      ['proof-1', 'proof-2', 'proof-3'].forEach(id => document.getElementById(id)?.classList.add('proven'));
+    }
+
+    // ─── FORM VALIDATION & SUBMIT ───
+    const form = document.getElementById('demo-form');
+    const formConfirm = document.getElementById('form-confirm');
+    const formError = document.getElementById('form-error');
+
+    function showError(msg) { formError.textContent = msg; formError.style.display = 'block'; }
+    function clearError() { formError.textContent = ''; formError.style.display = 'none'; }
+    function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); clearError();
+      const name = form.name.value.trim();
+      const institution = form.institution.value.trim();
+      const email = form.email.value.trim();
+      if (!name) { showError('Please enter your name.'); form.name.focus(); return; }
+      if (!institution) { showError('Please enter your institution.'); form.institution.focus(); return; }
+      if (!email) { showError('Please enter your email.'); form.email.focus(); return; }
+      if (!isValidEmail(email)) { showError('Please enter a valid email address.'); form.email.focus(); return; }
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ name, institution, email })
+        });
+        if (res.ok) { form.style.display = 'none'; formConfirm.style.display = 'block'; }
+        else { showError('Something went wrong. Please try again or email us directly.'); }
+      } catch { showError('Unable to submit. Please check your connection and try again.'); }
+    });
+  </script>
+
+</body>
+
+</html>
