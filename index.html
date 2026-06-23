@@ -14,16 +14,11 @@
   <header id="site-header" role="banner">
     <div class="header-inner">
       <a href="#hero" class="logo"><img src="logo.png" alt="MemoTrack Logo" /><span class="logo-text">MemoTrack™<span class="logo-tagline">Memo Completions, PROVEN</span></span></a>
-      <div class="header-right">
-        <nav class="header-nav">
-          <a href="#about" class="nav-link">About</a>
-          <a href="#report" class="nav-link">Report</a>
-        </nav>
+      <nav class="header-nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#report" class="nav-link">Report</a>
         <a href="#demo" class="btn-primary">Book a Demo</a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
-        </button>
-      </div>
+      </nav>
     </div>
   </header>
   <main>
@@ -313,14 +308,17 @@
         <div class="form-wrap">
           <h2 class="form-headline reveal" id="form-heading">Want to see how it works?</h2>
           <p class="form-sub reveal">Book a short demo and we'll show you the whole flow — from logging a complaint to closing it with proof.</p>
-          <form id="demo-form" action="http://127.0.0.1:8000/api/demo-request/" method="POST" novalidate>
+          <form id="demo-form" action="http://app.memotrack.net/api/demo-request/" method="POST" novalidate>
             <div class="reveal-group">
               <div class="field-group"><label for="name">Your Name</label><div class="salutation-field"><select id="salutation" name="salutation" class="salutation-select"><option value="Dr.">Dr.</option><option value="Mr.">Mr.</option><option value="Mrs.">Mrs.</option></select><input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" required /></div></div>
               <div class="field-group"><label for="institution">Hospital / Institution</label><input type="text" id="institution" name="institution" placeholder="Government Medical College, Chennai" required /></div>
               <div class="field-group"><label for="phone">Phone Number</label><div class="phone-field"><span class="phone-prefix">+91</span><input type="tel" id="phone" name="phone" placeholder="98765 43210" autocomplete="tel" required /></div></div>
               <div class="field-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@hospital.in" autocomplete="email" required /></div>
               <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
-              <button type="submit" class="btn-submit">Book a Demo →</button>
+              <button type="submit" class="btn-submit" id="submit-btn">
+                <span class="btn-text" id="submit-btn-text">Book a Demo →</span>
+                <svg class="btn-spinner" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="4"></circle><path d="M12 2a10 10 0 0 1 10 10" stroke="#fff" stroke-width="4" stroke-linecap="round"></path></svg>
+              </button>
               <p class="form-note">We'll get back to you within 2 working days.</p>
             </div>
           </form>
