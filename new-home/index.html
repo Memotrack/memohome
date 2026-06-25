@@ -118,7 +118,6 @@
     .voice-transcript{font-family:var(--font-ui);font-size:15px;color:var(--text-primary);margin-top:16px;min-height:48px;font-style:italic}
     .proof-chain{display:flex;flex-direction:column;gap:12px}
     .proof-step{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:2px solid var(--border);background:#fff;transition:border-color 400ms ease}
-    .proof-step.proven{border-color:var(--border)}
     .proof-step-icon{font-family:var(--font-display);font-size:16px;color:var(--accent);width:28px;text-align:center;flex-shrink:0}
     .proof-step-label{font-weight:700;font-size:13px;color:var(--text-primary)}
     .proof-step-sub{font-size:12px;color:var(--text-secondary)}
@@ -129,11 +128,6 @@
     .bento-card:hover .dash-stat{border-color:var(--accent);background:var(--accent-light)}
     .dash-stat-num{font-family:var(--font-display);font-size:28px;color:var(--text-primary);line-height:1;margin-bottom:4px}
     .dash-stat-label{font-size:11px;color:var(--text-secondary);font-weight:600}
-    .dash-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-family:var(--font-ui);font-size:12px}
-    .dash-row-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-    .dash-row-dot.open{background:#f59e0b}.dash-row-dot.in-progress{background:#3b82f6}.dash-row-dot.done{background:#22c55e}
-    .dash-row-memo{color:var(--text-primary);font-weight:500}
-    .dash-row-ward{color:var(--text-secondary);margin-left:auto}
     #value-prop{padding:80px 0}
     .value-header{text-align:center;margin-bottom:48px}
     .value-title-lg{font-family:var(--font-display);font-size:42px;color:var(--text-primary);margin-bottom:16px}
@@ -157,7 +151,7 @@
     .segments-footer{text-align:center;margin-top:40px}
     .segments-footer .line1{font-family:var(--font-ui);font-weight:700;color:var(--text-primary);font-size:18px;margin-bottom:8px}
     .segments-footer .line2{font-family:var(--font-ui);color:var(--text-secondary);font-size:15px}
-    /* SUPPORT SECTION - Option D */
+    /* SUPPORT SECTION */
     #support{padding:0 0 80px}
     .support-feature-row{display:flex;justify-content:center;gap:80px;padding:56px 0 40px;flex-wrap:wrap}
     .support-feature-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
@@ -168,6 +162,65 @@
     .trust-strip-inline{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;padding-top:28px;border-top:1px solid var(--border);font-family:var(--font-ui);font-size:14px;color:var(--text-secondary)}
     .trust-strip-inline strong{color:var(--text-primary);font-weight:700}
     .trust-inline-divider{color:var(--border-thick);font-size:18px;line-height:1}
+    /* ABOUT SECTION */
+    #about{padding:80px 0;background:#fff}
+    .about-inner{max-width:860px;margin:0 auto}
+    .about-section-tag{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .about-headline{font-family:var(--font-display);font-size:42px;color:var(--text-primary);margin-bottom:24px;line-height:1.15}
+    .about-quote{font-family:var(--font-display);font-size:20px;line-height:1.55;color:var(--text-primary);border-left:3px solid var(--accent);padding-left:20px;margin-bottom:40px}
+    .about-divider{border:none;border-top:1px solid var(--border);margin:40px 0}
+    .about-h2{font-family:var(--font-display);font-size:28px;color:var(--text-primary);margin-bottom:16px}
+    .about-h3{font-family:var(--font-ui);font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:4px}
+    .about-p{font-family:var(--font-ui);font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:16px}
+    .about-p strong{color:var(--text-primary);font-weight:600}
+    .founder-row{display:flex;gap:24px;align-items:flex-start;margin:20px 0 32px}
+    .founder-img{width:110px;height:110px;border-radius:12px;object-fit:cover;filter:grayscale(100%);border:2px solid var(--border);flex-shrink:0}
+    .about-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+    .about-detail-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .about-detail-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:8px}
+    .about-detail-value{font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:4px}
+    .about-detail-sub{font-size:13px;color:var(--text-secondary)}
+    .about-product-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:14px}
+    .about-product-name{font-family:var(--font-display);font-size:19px;color:var(--text-primary);margin-bottom:4px}
+    .about-product-status{font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:10px;display:inline-block}
+    .status-live{color:#16A34A}.status-dev{color:#D97706}
+    .about-product-desc{font-family:var(--font-ui);font-size:14px;color:var(--text-secondary);line-height:1.65}
+    .about-principle-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+    .about-principle-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .about-principle-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .about-principle-icon{font-size:18px}
+    .about-principle-title{font-family:var(--font-ui);font-weight:700;font-size:15px;color:var(--text-primary)}
+    .about-principle-desc{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.6}
+    /* REPORT SECTION */
+    #report{padding:80px 0}
+    .report-inner{max-width:860px;margin:0 auto}
+    .report-section-tag{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .report-headline{font-family:var(--font-display);font-size:42px;color:var(--text-primary);margin-bottom:12px;line-height:1.15}
+    .report-subline{font-family:var(--font-ui);font-size:17px;color:var(--text-secondary);line-height:1.65;margin-bottom:40px}
+    .report-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+    .report-stat-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center}
+    .report-stat-num{font-family:var(--font-display);font-size:36px;color:var(--text-primary);line-height:1;margin-bottom:6px}
+    .report-stat-label{font-family:var(--font-ui);font-size:12px;color:var(--text-secondary);font-weight:600}
+    .report-divider{border:none;border-top:1px solid var(--border);margin:36px 0}
+    .report-h2{font-family:var(--font-display);font-size:26px;color:var(--text-primary);margin-bottom:16px}
+    .report-finding-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+    .report-finding-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px}
+    .report-finding-num{font-family:var(--font-display);font-size:32px;color:var(--accent);line-height:1;margin-bottom:6px}
+    .report-finding-label{font-family:var(--font-ui);font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px}
+    .report-finding-sub{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.55}
+    .report-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .report-bar-label{font-family:var(--font-ui);font-size:12px;color:var(--text-secondary);width:110px;text-align:right;flex-shrink:0}
+    .report-bar-track{flex:1;height:18px;background:var(--bg);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
+    .report-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 8px}
+    .report-bar-val{font-family:var(--font-ui);font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+    .report-growth-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px}
+    .report-growth-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+    .report-growth-num{font-family:var(--font-display);font-size:28px;color:var(--text-primary);line-height:1;margin-bottom:4px}
+    .report-growth-label{font-family:var(--font-ui);font-size:12px;color:var(--text-secondary);font-weight:600}
+    .report-cta-card{background:#fff;border:7px solid var(--border);border-radius:var(--radius-card);padding:40px;text-align:center;margin-top:40px}
+    .report-cta-title{font-family:var(--font-display);font-size:28px;color:var(--text-primary);margin-bottom:12px}
+    .report-cta-desc{font-family:var(--font-ui);font-size:16px;color:var(--text-secondary);line-height:1.6;margin-bottom:24px}
+    /* DEMO */
     #demo{padding:80px 0 120px;text-align:center}
     .form-wrap{max-width:480px;margin:0 auto}
     .form-headline{font-family:var(--font-display);font-size:42px;line-height:1.1;color:var(--text-primary);margin-bottom:12px}
@@ -195,9 +248,9 @@
     .footer-org{font-weight:700;color:var(--text-primary);font-size:15px;margin-bottom:2px}
     .footer-unit{font-size:12px;color:var(--text-secondary)}
     .footer-text{font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);margin-top:16px}
-    @media(max-width:960px){.hero-headline{font-size:42px}.bento-card{padding:32px}.bento-title{font-size:26px}.segments-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:768px){#hero{padding-top:120px;padding-bottom:40px}.hero-inner{grid-template-columns:1fr;text-align:center}.hero-headline{font-size:32px}.hero-subline{margin-left:auto;margin-right:auto}.hero-authority{justify-content:center}.hero-svg{order:-1;margin-bottom:16px}.hero-svg svg{max-width:260px}.bento-grid{grid-template-columns:1fr;gap:16px}.bento-card{padding:28px 22px;min-height:auto}.bento-title{font-size:24px}.speed-stat{font-size:56px}.form-headline{font-size:32px}.trust-strip-inline{gap:12px;font-size:13px}.trust-inline-divider{display:none}.support-feature-row{gap:40px;padding:40px 0 28px}.value-grid{grid-template-columns:1fr}.segments-grid{grid-template-columns:1fr}}
-    @media(prefers-reduced-motion:reduce){.h-phase1,.h-phase2,.h-paper,.h-phone,.h-notif,.h-bell,.h-check,.h-step1,.h-step2,.h-step3,.h-arrow1,.h-arrow2{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}.h-phase1{opacity:0}.h-phase2{opacity:1}}
+    .header-nav{display:flex;align-items:center;gap:28px}
+    .header-nav a.nav-link{font-family:var(--font-ui);font-weight:600;font-size:15px;color:var(--text-secondary);text-decoration:none;transition:color 200ms ease}
+    .header-nav a.nav-link:hover{color:var(--accent)}
     .dash-svg{width:100%;height:auto;display:block}
     .dash-header{opacity:0;animation:dashFadeIn 600ms ease forwards 200ms}
     .dash-row-text{opacity:0;animation:dashSlideIn 500ms ease forwards}
@@ -215,37 +268,9 @@
     @keyframes dashBarGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
     @keyframes dashSlideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @media(prefers-reduced-motion:reduce){.dash-header,.dash-row-text,.dash-row-line,.dash-status-dot,.dash-status-text,.dash-check,.dash-bar,.dash-worker-card,.dash-worker-check{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}}
-    .header-nav{display:flex;align-items:center;gap:28px}
-    .header-nav a.nav-link{font-family:var(--font-ui);font-weight:600;font-size:15px;color:var(--text-secondary);text-decoration:none;transition:color 200ms ease}
-    .header-nav a.nav-link:hover{color:var(--accent)}
-    .hero-authority{margin-top:20px;font-size:13px;color:var(--text-secondary);display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
-    .hero-authority .dot{color:var(--accent);font-weight:700}
-    #about{padding:80px 0}
-    .about-header{text-align:center;margin-bottom:48px}
-    .about-title{font-family:var(--font-display);font-size:42px;color:var(--text-primary);margin-bottom:16px}
-    .about-subtitle{font-family:var(--font-ui);font-size:18px;color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.6}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-    .about-body p{font-family:var(--font-ui);font-size:17px;color:var(--text-secondary);line-height:1.8;margin-bottom:20px}
-    .about-body p strong{color:var(--text-primary)}
-    .about-card{background:#fff;border:7px solid var(--border);border-radius:var(--radius-card);padding:36px}
-    .about-card-item{padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--border)}
-    .about-card-item:last-child{padding-bottom:0;margin-bottom:0;border-bottom:none}
-    .about-card-label{font-family:var(--font-display);font-size:20px;color:var(--text-primary);margin-bottom:8px}
-    .about-card-desc{font-family:var(--font-ui);font-size:15px;color:var(--text-secondary);line-height:1.7}
-    #report{padding:80px 0;background:#fff}
-    .report-header{text-align:center;margin-bottom:48px}
-    .report-title{font-family:var(--font-display);font-size:42px;color:var(--text-primary);margin-bottom:16px}
-    .report-subtitle{font-family:var(--font-ui);font-size:18px;color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.6}
-    .report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .report-card{background:var(--bg);border:7px solid var(--border);border-radius:var(--radius-card);padding:36px;transition:box-shadow 300ms ease,transform 300ms ease,border-color 300ms ease}
-    .report-card:hover{box-shadow:0 20px 48px rgba(0,0,0,0.07);transform:translateY(-3px);border-color:var(--border-thick)}
-    .report-card-icon{width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-    .report-card-icon svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .report-card-title{font-family:var(--font-display);font-size:24px;color:var(--text-primary);margin-bottom:12px}
-    .report-card-desc{font-family:var(--font-ui);font-size:15px;color:var(--text-secondary);line-height:1.6}
-    .report-card-desc strong{color:var(--text-primary);font-weight:600}
-    @media(max-width:960px){.about-grid{grid-template-columns:1fr}.report-grid{grid-template-columns:1fr}}
-    @media(max-width:768px){.about-title{font-size:32px}.report-title{font-size:32px}.header-nav a.nav-link{font-size:13px}}
+    @media(max-width:960px){.hero-headline{font-size:42px}.bento-card{padding:32px}.bento-title{font-size:26px}.segments-grid{grid-template-columns:repeat(2,1fr)}.report-stats-row{grid-template-columns:repeat(2,1fr)}.about-detail-grid{grid-template-columns:1fr}.about-principle-grid{grid-template-columns:1fr}.report-finding-grid{grid-template-columns:1fr}.report-growth-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:768px){#hero{padding-top:120px;padding-bottom:40px}.hero-inner{grid-template-columns:1fr;text-align:center}.hero-headline{font-size:32px}.hero-subline{margin-left:auto;margin-right:auto}.hero-authority{justify-content:center}.hero-svg{order:-1;margin-bottom:16px}.hero-svg svg{max-width:260px}.bento-grid{grid-template-columns:1fr;gap:16px}.bento-card{padding:28px 22px;min-height:auto}.bento-title{font-size:24px}.speed-stat{font-size:56px}.form-headline{font-size:32px}.trust-strip-inline{gap:12px;font-size:13px}.trust-inline-divider{display:none}.support-feature-row{gap:40px;padding:40px 0 28px}.value-grid{grid-template-columns:1fr}.segments-grid{grid-template-columns:1fr}.about-headline{font-size:30px}.report-headline{font-size:30px}.report-stats-row{grid-template-columns:1fr 1fr}.report-growth-grid{grid-template-columns:1fr}.founder-row{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){.h-phase1,.h-phase2,.h-paper,.h-phone,.h-notif,.h-bell,.h-check,.h-step1,.h-step2,.h-step3,.h-arrow1,.h-arrow2{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}.h-phase1{opacity:0}.h-phase2{opacity:1}}
   </style>
 </head>
 <body>
@@ -260,6 +285,7 @@
     </div>
   </header>
   <main>
+    <!-- HERO -->
     <section id="hero" aria-labelledby="hero-headline">
       <div class="container">
         <div class="hero-inner reveal-group" id="hero-group">
@@ -270,7 +296,7 @@
             <div class="hero-authority"><span>Live in a Government Medical College Hospital, Tamil Nadu</span><span class="dot">·</span><span>DPIIT-recognised startup</span></div>
           </div>
           <div class="hero-svg">
-            <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MemoTrack: Paper memo becomes app, sends notification, verified with OTP">
+            <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MemoTrack flow diagram">
               <g class="h-phase1">
                 <g class="h-paper">
                   <rect x="120" y="70" width="160" height="190" rx="6" fill="#E0F2F7" stroke="#0891B2" stroke-width="2" transform="rotate(-4 200 165)"/>
@@ -344,6 +370,8 @@
         </div>
       </div>
     </section>
+
+    <!-- BENTO -->
     <section id="bento-showcase">
       <div class="container">
         <div class="bento-grid reveal-group">
@@ -431,7 +459,7 @@
           <div class="bento-card bento-medium" id="card-dashboard">
             <div class="bento-text"><h2 class="bento-title">Everything in one place, no calls needed.</h2><p class="bento-desc">Supervisors can check the status of any complaint at a glance — open, in progress, or closed with proof.</p></div>
             <div class="bento-visual">
-              <svg class="dash-svg" viewBox="0 0 540 280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dashboard showing complaints table and block-wise chart">
+              <svg class="dash-svg" viewBox="0 0 540 280" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dashboard">
                 <rect class="dash-header" x="0" y="0" width="540" height="32" rx="6" fill="#F1F5F9"/>
                 <text x="12" y="20" font-family="system-ui,sans-serif" font-size="10" fill="#64748B" font-weight="700">COMPLAINT</text>
                 <text x="220" y="20" font-family="system-ui,sans-serif" font-size="10" fill="#64748B" font-weight="700">BLOCK</text>
@@ -473,15 +501,14 @@
                 <path class="dash-worker-check" d="M243 236 l4 4 l7 -8" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 <text x="268" y="230" font-family="system-ui,sans-serif" font-size="11" fill="#1E293B" font-weight="600">Electrician · Block A</text>
                 <text x="268" y="248" font-family="system-ui,sans-serif" font-size="10" fill="#64748B">3 active · 1 completed today</text>
-                <circle cx="248" cy="260" r="3" fill="#16A34A" opacity="0.4"/>
-                <circle cx="260" cy="260" r="3" fill="#16A34A" opacity="0.6"/>
-                <circle cx="272" cy="260" r="3" fill="#16A34A" opacity="0.8"/>
               </svg>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- VALUE PROP -->
     <section id="value-prop">
       <div class="container">
         <div class="value-header reveal"><h2 class="value-title-lg">What changes when MemoTrack runs your hospital</h2><p class="value-subtitle">Not another app for your staff to learn — a clearer view of your hospital for you to run.</p></div>
@@ -492,6 +519,8 @@
         </div>
       </div>
     </section>
+
+    <!-- BUILT FOR -->
     <section id="built-for">
       <div class="container">
         <div class="value-header reveal"><h2 class="value-title-lg">Built For</h2><p class="value-subtitle">Government hospitals, medical colleges, specialty centers, and private clinics.</p></div>
@@ -505,7 +534,7 @@
       </div>
     </section>
 
-    <!-- SUPPORT SECTION - Option D: Icon Feature Row + Inline Trust Strip -->
+    <!-- SUPPORT -->
     <section id="support">
       <div class="container">
         <div class="support-feature-row reveal-group">
@@ -541,6 +570,135 @@
       </div>
     </section>
 
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="about-inner reveal">
+          <div class="about-section-tag">About</div>
+          <h2 class="about-headline">About MemoTrack</h2>
+          <div class="about-quote">Most hospital software are built by developers who understand technology but not hospitals. MemoTrack derived as a strategy from the ground level — shaped by the one who works in the hospital, saw the problems in practice and applied with technical skill to build a product that achieved measurable success in real time.</div>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">Who We Are</h3>
+          <p class="about-h3">Centre for Research and Innovation in Health Tech (CRIHT)</p>
+          <p class="about-p" style="font-style:italic;margin-bottom:12px">A unit of Yauvana Yaazh Aayvagam Private Limited</p>
+          <p class="about-p">We are a healthcare technology company based in Tamil Nadu, building applied software for hospitals, medical colleges, and clinical practitioners. Our work spans hospital operations, clinical education, patient records, nutrition management, and AI-enabled healthcare tools.</p>
+          <p class="about-p">We do not build generic software and adapt it for hospitals. We build for hospitals first, and nothing else. Our products are designed for Indian conditions — and built to global quality standards, with instant scalability for international deployment.</p>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">The Founder</h3>
+          <div class="founder-row">
+            <img src="ramanan.jpeg" alt="Dr. R K Ramanan" class="founder-img" />
+            <div>
+              <p class="about-h3" style="margin-bottom:8px">Dr. R K Ramanan, MBBS., MMST (IIT Kharagpur)</p>
+              <p class="about-p">MBBS, Master's in Medical Science and Technology from IIT Kharagpur — the first physician-scientist training program of its kind in India. He assesses clinical workflows as a practising doctor, architects technical solutions as an IIT-trained engineer, and understands hospital realities from working inside them. Every product CRIHT builds carries that combined perspective.</p>
+            </div>
+          </div>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">What We Build</h3>
+          <div class="about-product-card">
+            <div class="about-product-name">MemoTrack</div>
+            <div class="about-product-status status-live">Live · GeM listing in progress</div>
+            <div class="about-product-desc">Hospital maintenance ticketing with verified completions. Ward staff raise a location-precise complaint in under a minute. The right maintenance worker is notified instantly. A one-time code proves the worker arrived. A second code — provided by the ward, not the worker — proves the work is genuinely done. The only hospital maintenance platform with dual TOTP verification at its core.</div>
+          </div>
+          <div class="about-product-card">
+            <div class="about-product-name">INNOVDOC</div>
+            <div class="about-product-status status-live">Live</div>
+            <div class="about-product-desc">AI-powered clinical education for medical students, residents, and healthcare practitioners. Offline and online capable. Developed and delivered in collaboration with recognised academics and AI practitioners — built for institutions with variable connectivity and diverse regional learning needs.</div>
+          </div>
+          <div class="about-product-card">
+            <div class="about-product-name">Clinical Diet Management System</div>
+            <div class="about-product-status status-dev">In Development</div>
+            <div class="about-product-desc">Built specifically for specialty, multi-bedded hospitals that manage large volumes of patients with complex dietary requirements. Generates individualised, clinician-validated diet charts at scale — designed to replace manual dietitian workflows across wards, OPDs, and ICUs without reducing clinical oversight.</div>
+          </div>
+          <div class="about-product-card">
+            <div class="about-product-name">Blockchain-Enabled Patient Health Records</div>
+            <div class="about-product-status status-dev">In Development</div>
+            <div class="about-product-desc">A decentralised, tamper-proof patient record system — designed to give patients, clinicians, and institutions a permanent, verifiable, and portable health record that no single system owns. Built for both public and private hospital networks.</div>
+          </div>
+          <div class="about-product-card">
+            <div class="about-product-name">VR for Clinical Education and Telemedicine</div>
+            <div class="about-product-status status-dev">In Development</div>
+            <div class="about-product-desc">Immersive virtual reality environments for clinical simulation, procedural training, and telemedicine consultation — enabling remote clinical interaction, specialist mentoring across geographies, and hands-on training without physical presence.</div>
+          </div>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">Our Principles</h3>
+          <div class="about-principle-grid">
+            <div class="about-principle-card"><div class="about-principle-header"><span class="about-principle-icon">🔓</span><span class="about-principle-title">No feature paywalls</span></div><p class="about-principle-desc">Every hospital gets every feature on every plan. Voice input, verification systems, real-time dashboards, and administrative tools are not premium additions.</p></div>
+            <div class="about-principle-card"><div class="about-principle-header"><span class="about-principle-icon">🌍</span><span class="about-principle-title">Multi-language, globally deployable</span></div><p class="about-principle-desc">Multi-language voice input. SMS OTP authentication that works without smartphones. Offline-capable where needed. Built for variable connectivity and shift-based workforces.</p></div>
+            <div class="about-principle-card"><div class="about-principle-header"><span class="about-principle-icon">✓</span><span class="about-principle-title">Global quality standard</span></div><p class="about-principle-desc">Every product is built to international benchmarks — not a localised workaround, but a product that can stand beside global-market alternatives.</p></div>
+            <div class="about-principle-card"><div class="about-principle-header"><span class="about-principle-icon">⏱</span><span class="about-principle-title">Built to run continuously</span></div><p class="about-principle-desc">Hospitals operate 24 hours a day. Downtime is not an inconvenience — in a clinical environment, it is a safety event. Every product is built and maintained with that standard.</p></div>
+          </div>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">Recognition</h3>
+          <div class="about-detail-grid">
+            <div class="about-detail-card"><div class="about-detail-label">DPIIT-Recognised Startup</div><div class="about-detail-value">Department for Promotion of Industry and Internal Trade</div><div class="about-detail-sub">Government of India</div></div>
+            <div class="about-detail-card"><div class="about-detail-label">MSME Registered</div><div class="about-detail-value">Ministry of Micro, Small and Medium Enterprises</div><div class="about-detail-sub">Government of India</div></div>
+            <div class="about-detail-card"><div class="about-detail-label">GeM Listing</div><div class="about-detail-value">In Progress</div><div class="about-detail-sub">Grievance Management System Software, Government e-Marketplace</div></div>
+          </div>
+
+          <hr class="about-divider" />
+          <h3 class="about-h2">Contact</h3>
+          <p class="about-p">For product demos, implementation discussions, or custom software development enquiries, reach us on WhatsApp at <strong>+91 88 38 602 384</strong> or email <strong>memotrack.criht@gmail.com</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT -->
+    <section id="report" style="background:#fff">
+      <div class="container">
+        <div class="report-inner reveal">
+          <div class="report-section-tag">Impact Report</div>
+          <h2 class="report-headline">1,710 Unique Stories</h2>
+          <p class="report-subline">Real data from a live government medical college hospital in Tamil Nadu. Every number here represents an actual complaint raised, tracked, and resolved using MemoTrack.</p>
+
+          <div class="report-stats-row">
+            <div class="report-stat-card"><div class="report-stat-num">1,710</div><div class="report-stat-label">Total memos raised</div></div>
+            <div class="report-stat-card"><div class="report-stat-num" style="color:#0891B2">3.3 hrs</div><div class="report-stat-label">Avg. attendance time</div></div>
+            <div class="report-stat-card"><div class="report-stat-num" style="color:#16A34A">96%</div><div class="report-stat-label">Faster than paper</div></div>
+            <div class="report-stat-card"><div class="report-stat-num">8+</div><div class="report-stat-label">Blocks connected</div></div>
+          </div>
+
+          <hr class="report-divider" />
+          <h3 class="report-h2">Key Findings</h3>
+          <div class="report-finding-grid">
+            <div class="report-finding-card"><div class="report-finding-num">377</div><div class="report-finding-label">Memos in month one</div><div class="report-finding-sub">Ward nurses adopted instantly — no training needed. Every complaint raised is duly attended.</div></div>
+            <div class="report-finding-card"><div class="report-finding-num">915</div><div class="report-finding-label">Memos in 2025</div><div class="report-finding-sub">First full year of deployment. Consistent usage across all blocks with zero drop-off.</div></div>
+            <div class="report-finding-card"><div class="report-finding-num">538</div><div class="report-finding-label">Memos in 2026</div><div class="report-finding-sub">Latest data. Growth continues as more wards and departments onboard the platform.</div></div>
+            <div class="report-finding-card"><div class="report-finding-num">100%</div><div class="report-finding-label">Wards connected</div><div class="report-finding-sub">Every ward in the hospital is now live on MemoTrack. No department left on paper.</div></div>
+          </div>
+
+          <hr class="report-divider" />
+          <h3 class="report-h2">Top Responders by Volume</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
+            <div class="report-bar-row"><div class="report-bar-label">Manikandan</div><div class="report-bar-track"><div class="report-bar-fill" style="width:100%;background:#1A3C6E"><span class="report-bar-val">101</span></div></div></div>
+            <div class="report-bar-row"><div class="report-bar-label">Dhamodaran</div><div class="report-bar-track"><div class="report-bar-fill" style="width:56%;background:#0891B2"><span class="report-bar-val">57</span></div></div></div>
+            <div class="report-bar-row"><div class="report-bar-label">Barani</div><div class="report-bar-track"><div class="report-bar-fill" style="width:41%;background:#0891B2"><span class="report-bar-val">41</span></div></div></div>
+            <div class="report-bar-row"><div class="report-bar-label">Barathi</div><div class="report-bar-track"><div class="report-bar-fill" style="width:41%;background:#16A34A"><span class="report-bar-val">41</span></div></div></div>
+            <div class="report-bar-row"><div class="report-bar-label">G Srinivasan</div><div class="report-bar-track"><div class="report-bar-fill" style="width:35%;background:#D97706"><span class="report-bar-val">35</span></div></div></div>
+          </div>
+
+          <hr class="report-divider" />
+          <h3 class="report-h2">What's Ahead</h3>
+          <div class="report-growth-grid">
+            <div class="report-growth-card"><div class="report-growth-num">✓</div><div class="report-growth-label" style="font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--text-primary);margin-bottom:6px">Ready acceptance by staff</div><p style="font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.55">377 memos raised in month one. Ward nurses adopted it instantly — no training needed.</p></div>
+            <div class="report-growth-card"><div class="report-growth-num">✓</div><div class="report-growth-label" style="font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--text-primary);margin-bottom:6px">Administrative ease</div><p style="font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.55">Real-time dashboard monitoring, Excel exports, daily filterable reports — decisions backed by data.</p></div>
+            <div class="report-growth-card"><div class="report-growth-num" style="color:#0891B2">→</div><div class="report-growth-label" style="font-family:var(--font-ui);font-weight:700;font-size:14px;color:var(--text-primary);margin-bottom:6px">Deploy across Tamil Nadu</div><p style="font-family:var(--font-ui);font-size:13px;color:var(--text-secondary);line-height:1.55">1,710 unique stories prove the model. Ready for state-wide deployment.</p></div>
+          </div>
+
+          <div class="report-cta-card">
+            <h3 class="report-cta-title">Want the full report?</h3>
+            <p class="report-cta-desc">We'll walk you through the complete data — block-wise breakdowns, trade-wise analysis, attendance timings, and completion rates — in a 30-minute demo.</p>
+            <a href="#demo" class="btn-primary">Book a Demo →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO -->
     <section id="demo" aria-labelledby="form-heading">
       <div class="container">
         <div class="form-wrap">
@@ -554,7 +712,7 @@
               <div class="field-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@hospital.in" autocomplete="email" required /></div>
               <p class="form-error" id="form-error" role="alert" aria-live="polite"></p>
               <button type="submit" class="btn-submit">Book a Demo →</button>
-              <p class="form-note">We'll get back to you within 2 working days.</p>
+              <p class="form-note">We will connect with you in a short time.</p>
             </div>
           </form>
           <div class="form-confirm" id="form-confirm" role="status" aria-live="polite">Got it — we'll be in touch within 2 working days.</div>
@@ -563,7 +721,16 @@
       </div>
     </section>
   </main>
-  <footer role="contentinfo"><div class="container"><p class="footer-developed">Developed by</p><p class="footer-org">Centre for Research and Innovation in Health Tech</p><p class="footer-unit">A unit of Yauvana Yaazh Aayvagam Private Limited</p><p class="footer-text">MemoTrack™ · Built for Indian hospitals · © 2026 Yauvana Yaazh Aayvagam Private Limited</p></div></footer>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p class="footer-developed">Developed by</p>
+      <p class="footer-org">Centre for Research and Innovation in Health Tech</p>
+      <p class="footer-unit">A unit of Yauvana Yaazh Aayvagam Private Limited</p>
+      <p class="footer-text">MemoTrack™ · Built for Indian hospitals · © 2026 Yauvana Yaazh Aayvagam Private Limited</p>
+    </div>
+  </footer>
+
   <script>
     const header=document.getElementById('site-header');window.addEventListener('scroll',()=>{header.classList.toggle('visible',window.scrollY>100)},{passive:true});
     const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;document.getElementById('hero-group')?.classList.add('in-view');
@@ -574,12 +741,12 @@
     const cardVoice=document.getElementById('card-voice');if(cardVoice){const phrases={tamil:'"உடைந்த குழாய் புதியதாக மாற்றப்பட்டது"',malayalam:'"പൊട്ടിയ പൈപ്പ് പുതിയ ടാപ്പ് വച്ച് മാറ്റി"',kannada:'"ಮುರಿದ ಪೈಪ್ ತೆಗೆದು ಹೊಸ ಟ್ಯಾಪ್ ಹಾಕಿದ್ದೇವೆ"',telugu:'"పగిలిన పైపును కొత్త ట్యాప్‌తో మార్చాము"',marathi:'"तुटलेली पाईप नवीन टॅपने बदलली"',bangla:'"ভেঙে যাওয়া পাইপটি নতুন ট্যাপ দিয়ে পরিবর্তন করা হয়েছে"',hindi:'"टूटी हुई पाइप को नए टैप से बदल दिया गया है"',english:'"The broken pipe has been replaced with a new tap"'};
     const langOrder=['tamil','malayalam','kannada','telugu','marathi','bangla','hindi','english'];
     const tags=document.querySelectorAll('#voice-tags .voice-tag');const transcript=document.getElementById('voice-transcript');const waveform=document.getElementById('voice-waveform');
-    let currentLangIndex=7;let autoCycleInterval;let userInteracted=false;
+    let currentLangIndex=7;let autoCycleInterval;
     function activateLang(lang){tags.forEach(t=>t.classList.remove('active'));const activeTag=document.querySelector(`[data-lang="${lang}"]`);if(activeTag)activeTag.classList.add('active');if(!prefersReducedMotion){const bars=waveform.querySelectorAll('.voice-bar');bars.forEach((bar,i)=>{bar.classList.add('active');bar.style.animation=`wave 0.9s ease-in-out infinite`;bar.style.animationDelay=`${i*0.08}s`;setTimeout(()=>{bar.classList.remove('active');bar.style.animation='none'},1500)})}const text=phrases[lang];transcript.textContent='';let i=0;const typeInterval=setInterval(()=>{if(i<text.length){transcript.textContent+=text[i];i++}else{clearInterval(typeInterval)}},25)}
     function cycleLanguages(){currentLangIndex=(currentLangIndex+1)%langOrder.length;activateLang(langOrder[currentLangIndex])}
     function startAutoCycle(){stopAutoCycle();autoCycleInterval=setInterval(cycleLanguages,3000)}
     function stopAutoCycle(){if(autoCycleInterval){clearInterval(autoCycleInterval);autoCycleInterval=null}}
-    tags.forEach(tag=>{tag.addEventListener('click',()=>{userInteracted=true;stopAutoCycle();const lang=tag.dataset.lang;currentLangIndex=langOrder.indexOf(lang);activateLang(lang);setTimeout(()=>{userInteracted=false;startAutoCycle()},8000)})});
+    tags.forEach(tag=>{tag.addEventListener('click',()=>{stopAutoCycle();const lang=tag.dataset.lang;currentLangIndex=langOrder.indexOf(lang);activateLang(lang);setTimeout(()=>startAutoCycle(),8000)})});
     if(!prefersReducedMotion){startAutoCycle()}}
     const cardComplete=document.getElementById('card-complete');if(cardComplete&&!prefersReducedMotion){let proofInterval;function animateProof(){const steps=['proof-1','proof-2','proof-3'];steps.forEach(id=>document.getElementById(id)?.classList.remove('proven'));steps.forEach((id,i)=>{setTimeout(()=>document.getElementById(id)?.classList.add('proven'),600+i*700)})}
     const proofObserver=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){animateProof();proofInterval=setInterval(animateProof,4000)}else{clearInterval(proofInterval);const steps=['proof-1','proof-2','proof-3'];steps.forEach(id=>document.getElementById(id)?.classList.remove('proven'))}},{threshold:0.35});proofObserver.observe(cardComplete)}else{['proof-1','proof-2','proof-3'].forEach(id=>document.getElementById(id)?.classList.add('proven'))}
